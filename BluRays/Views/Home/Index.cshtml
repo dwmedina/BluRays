@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 
-<div>
+<div id="blurayCollection">
     @foreach (var bluray in Model)
     {
         <a asp-controller="Home" asp-action="Detail" asp-route-id="@bluray.Id" method="get">
