@@ -13,15 +13,33 @@
 <div>
     <h3>@Model.Title</h3>
     <h4>Genre: @Model.Genre | Rating: @Model.Rating</h4>
-    @{ 
+    @{
         if (Model.Description.Length > blurayInfoShort)
         {
             blurayDescription = Model.Description.Remove(blurayInfoShort) + "...";
-            <p>@blurayDescription</p>
+            <p id="blurayDescription">@blurayDescription</p>
+            // if button is clicked, display the full description
+            <button id="toggleInfo">More info</button>
         }
         else
         {
             <p>@Model.Description</p>
         }
+        <script>
+            const displayDescription = () => {
+                const button = document.getElementById("toggleInfo");
+                const text = button.innerText;
+                if (text === "More info") {
+                    button.innerText = "Less info";
+                    document.getElementById("blurayDescription").innerHTML = "@Model.Description";
+                } else {
+                    button.innerText = "More info";
+                    document.getElementById("blurayDescription").innerHTML = "@blurayDescription";
+                }
+
+            }
+            document.getElementById("toggleInfo").addEventListener("click", displayDescription);
+
+        </script>
     }
 </div>
