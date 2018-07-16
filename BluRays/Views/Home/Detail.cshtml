@@ -5,9 +5,23 @@
     int blurayInfoShort = 300;
 }
 
-<h2>@Model.Title</h2>
 <br />
 
 <div>
     <img src="~/images/@Model.ImageName" />
+</div>
+<div>
+    <h3>@Model.Title</h3>
+    <h4>Genre: @Model.Genre | Rating: @Model.Rating</h4>
+    @{ 
+        if (Model.Description.Length > blurayInfoShort)
+        {
+            blurayDescription = Model.Description.Remove(blurayInfoShort) + "...";
+            <p>@blurayDescription</p>
+        }
+        else
+        {
+            <p>@Model.Description</p>
+        }
+    }
 </div>
