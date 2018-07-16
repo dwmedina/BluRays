@@ -11,7 +11,7 @@
     @foreach (var bluray in Model)
     {
         <a asp-controller="Home" asp-action="Detail" asp-route-id="@bluray.Id" method="get">
-            <img src="~/images/@bluray.ImageName" />
+            <img id="blurayIndexCover" src="~/images/@bluray.ImageName" />
         </a>
     }
 </div>
