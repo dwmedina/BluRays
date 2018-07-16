@@ -20,7 +20,7 @@ namespace BluRays.Controllers
         }
 
         [HttpGet]
-        public IActionResult BluRay(int id)
+        public IActionResult Detail(int id)
         {
             BluRay bluRay = blurayDAL.GetBluRay(id);
             return View(bluRay);
