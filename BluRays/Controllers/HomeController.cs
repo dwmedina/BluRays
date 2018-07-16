@@ -5,33 +5,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BluRays.Models;
+using BluRays.DALs;
 
 namespace BluRays.Controllers
 {
     public class HomeController : Controller
     {
+        static BluRayDAL blurayDAL = new BluRayDAL();
+
         public IActionResult Index()
         {
-            return View();
+            IList<BluRay> allBluRays = blurayDAL.GetBluRays();
+            return View(allBluRays);
         }
 
-        public IActionResult About()
+        [HttpGet]
+        public IActionResult BluRay(int id)
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            BluRay bluRay = blurayDAL.GetBluRay(id);
+            return View(bluRay);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

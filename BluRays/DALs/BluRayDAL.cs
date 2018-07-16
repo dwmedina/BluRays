@@ -58,7 +58,7 @@ namespace BluRays.DALs
         {
             BluRay bluRay = null;
 
-            string sql = "SELECT * FROM blurays WHERE bluray_id = @id";
+            string sql = "SELECT * FROM blurays WHERE bluray_id = @id;";
 
             try
             {
