@@ -19,5 +19,18 @@ body {
     grid-template-columns: 40rem 40rem 40rem;
     grid-template-rows: 45rem 45rem 45rem;
     grid-column-gap: 2rem;
-    grid-row-gap: 3rem;
+    grid-row-gap: 4rem;
+}
+
+/*** Detail Page ***/
+#detail-flex {
+    display: flex;
+    align-items: flex-start;
+}
+
+#blurayStory {
+    padding: 4rem;
+    margin-top: -2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }

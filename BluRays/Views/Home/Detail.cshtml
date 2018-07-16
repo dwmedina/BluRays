@@ -7,25 +7,26 @@
 
 <br />
 
-<div>
-    <img src="~/images/@Model.ImageName" />
-</div>
-<div>
-    <h3>@Model.Title</h3>
-    <h4>Genre: @Model.Genre | Rating: @Model.Rating</h4>
-    @{
-        if (Model.Description.Length > blurayInfoShort)
-        {
-            blurayDescription = Model.Description.Remove(blurayInfoShort) + "...";
-            <p id="blurayDescription">@blurayDescription</p>
-            // if button is clicked, display the full description
-            <button id="toggleInfo">More info</button>
-        }
-        else
-        {
-            <p>@Model.Description</p>
-        }
-        <script>
+<div id="detail-flex">
+    <div>
+        <img src="~/images/@Model.ImageName" />
+    </div>
+    <div id="blurayStory">
+        <h3>@Model.Title</h3>
+        <h4>Genre: @Model.Genre | Rating: @Model.Rating</h4>
+        @{
+            if (Model.Description.Length > blurayInfoShort)
+            {
+                blurayDescription = Model.Description.Remove(blurayInfoShort) + "...";
+                <p id="blurayDescription">@blurayDescription</p>
+                // if button is clicked, display the full description
+                <button id="toggleInfo">More info</button>
+            }
+            else
+            {
+                <p>@Model.Description</p>
+            }
+            <script>
             const displayDescription = () => {
                 const button = document.getElementById("toggleInfo");
                 const text = button.innerText;
@@ -40,6 +41,8 @@
             }
             document.getElementById("toggleInfo").addEventListener("click", displayDescription);
 
-        </script>
-    }
+            </script>
+        }
+    </div>
+
 </div>
