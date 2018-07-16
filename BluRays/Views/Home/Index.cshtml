@@ -1,17 +1,17 @@
 ﻿@model IList<BluRay>
 @{
     ViewData["Title"] = "Index";
-    string blurayDescription = "";
-    int blurayInfoShort = 300;
+
 }
 
 <h2>Index</h2>
 
-<a asp-controller="Home" asp-action="Detail" method="get">
-    <div>
-        @foreach (var bluray in Model)
-        {
-                <img src="~/images/@bluray.ImageName" />
-        }
-    </div>
-</a>
+
+<div>
+    @foreach (var bluray in Model)
+    {
+        <a asp-controller="Home" asp-action="Detail" asp-route-id="@bluray.Id" method="get">
+            <img src="~/images/@bluray.ImageName" />
+        </a>
+    }
+</div>
