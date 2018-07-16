@@ -39,6 +39,11 @@ namespace BluRays.DALs
 
                     // Execute the command
                     SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        bluRays.Add(MapToBluRay(reader));
+                    }
                 }
             }
             catch (SqlException ex)
@@ -51,10 +56,38 @@ namespace BluRays.DALs
 
         public BluRay GetBluRay(int id)
         {
-            
+            BluRay bluRay = null;
+
+            string sql = "SELECT * FROM blurays WHERE bluray_id = @id";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    // open connection, create new command
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+
+                    cmd.Parameters.AddWithValue("@id", id);
+                    var reader = cmd.ExecuteReader();
+
+                    // only need an if for a single blu-ray, not a while loop
+                    if (reader.Read())
+                    {
+                        // re-use mapping method
+                        bluRay = MapToBluRay(reader);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+
+            return bluRay;
         }
 
-        public BluRay MapToEachBluRay(SqlDataReader reader)
+        public BluRay MapToBluRay(SqlDataReader reader)
         {
             return new BluRay()
             {
