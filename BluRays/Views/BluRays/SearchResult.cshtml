@@ -1,0 +1,29 @@
+﻿@model  IList<BluRay>
+@{
+    ViewData["Title"] = "SearchResult";
+}
+
+<h2>SearchResult</h2>
+
+<form asp-controller="BluRays" asp-action="SearchResult" method="get">
+    <label name="title"><strong>Title: </strong></label>
+    <input for="title" name="title" />
+
+    <label name="minLength"><strong>Minimum Length: </strong></label>
+    <input for="minLength" name="minLength" />
+
+    <label name="maxLength"><strong>Maximum Length: </strong></label>
+    <input for="maxLength" name="maxLength" />
+
+    <label><strong>Genre: </strong></label>
+    <select for="Genre" asp-items="@ViewBag.Genres" name="Genre"></select>
+    <input class="btn btn-default btn-sm" type="submit" value="Search" />
+</form>
+
+    @foreach (var bluray in Model)
+    {
+        <a asp-controller="Home" asp-action="Detail" asp-route-id="@bluray.Id" method="get">
+            <img src="~/images/@bluray.ImageName" />
+        </a>
+    }
+

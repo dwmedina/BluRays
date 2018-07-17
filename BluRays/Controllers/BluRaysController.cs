@@ -37,6 +37,14 @@ namespace BluRays.Controllers
             // Create a new Blu-ray DAL
             var dal = new BluRayDAL();
 
+            // repeat request as information is not retained
+            var genres = dal.GetGenres();
+
+            // Select genres and make them selectable items
+            var options = genres.Select(g => new SelectListItem() { Text = g, Value = g });
+
+            ViewBag.Genres = options;
+
             // Account for null values by conditions
             if (minLength == null)
             {
