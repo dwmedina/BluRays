@@ -54,6 +54,11 @@ namespace BluRays.DALs
             return bluRays;
         }
 
+        /// <summary>
+        /// Get a specific blu-ray based on Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public BluRay GetBluRay(int id)
         {
             BluRay bluRay = null;

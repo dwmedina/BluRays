@@ -1,0 +1,17 @@
+﻿@model BluRay
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Blu-ray Search</h2>
+
+<form asp-controller="blurays" asp-action="searchresult" method="get">
+    <label name="minLength"><strong>Minimum Length: </strong></label>
+    <input for="minLength" name="minLength" />
+    
+    <label name="maxLength"><strong>Maximum Length: </strong></label>
+    <input  for="maxLength" name="maxLength"/>
+    
+    <input />
+</form>
+
