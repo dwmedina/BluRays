@@ -125,19 +125,56 @@ namespace BluRays.DALs
             return bluRay;
         }
 
+        /// <summary>
+        /// Searches for Blu-rays within the given parameters
+        /// </summary>
+        /// <param name="genre"></param>
+        /// <param name="minLength"></param>
+        /// <param name="maxLength"></param>
+        /// <returns></returns>
+        public IList<BluRay> GetBluRaysBetween(string title, string genre, int? minLength, int? maxLength)
+        {
+            IList<BluRay> bluRays = new List<BluRay>();
+
+            // Create our SQL query
+            string bluRaySQL = @"SELECT * FROM blurays
+                                WHERE title LIKE @title AND genre = @genre AND runtime BETWEEN @minLength AND @maxLength;";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(bluRaySQL, conn);
+                cmd.Parameters.AddWithValue("@title", "%" + title + "%");
+                cmd.Parameters.AddWithValue("@genre", genre);
+                cmd.Parameters.AddWithValue("@minLength", minLength);
+                cmd.Parameters.AddWithValue("@maxLength", maxLength);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    bluRays.Add(MapToBluRay(reader));
+                }
+            }
+
+            return bluRays;
+        }
+
         public BluRay MapToBluRay(SqlDataReader reader)
         {
+            BluRay bluRay = new BluRay();
+
             return new BluRay()
             {
                 Id = Convert.ToInt32(reader["bluray_id"]),
                 Title = Convert.ToString(reader["title"]),
                 Description = Convert.ToString(reader["description"]),
-                Rating = Convert.ToString(reader["rating"]),
                 Genre = Convert.ToString(reader["genre"]),
                 Director = Convert.ToString(reader["director"]),
                 Writer = Convert.ToString(reader["writer"]),
                 ReleaseYear = Convert.ToInt32(reader["release_year"]),
-                Runtime = Convert.ToInt32(reader["release_year"]),
+                Runtime = Convert.ToInt32(reader["runtime"]),
                 ImageName = Convert.ToString(reader["image_name"])
             };
         }
