@@ -8,10 +8,12 @@
 <form asp-controller="blurays" asp-action="searchresult" method="get">
     <label name="minLength"><strong>Minimum Length: </strong></label>
     <input for="minLength" name="minLength" />
-    
+
     <label name="maxLength"><strong>Maximum Length: </strong></label>
-    <input  for="maxLength" name="maxLength"/>
-    
-    <input />
+    <input for="maxLength" name="maxLength" />
+
+    <label><strong>Genre: </strong></label>
+    <select for="Genre" asp-items="@ViewBag.Genres" name="genre"></select>
+    <input class="btn btn-default btn-sm" type="submit" value="Search" />
 </form>
 

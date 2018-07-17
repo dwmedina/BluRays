@@ -55,6 +55,39 @@ namespace BluRays.DALs
         }
 
         /// <summary>
+        /// Returns all of our Genres
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetGenres()
+        {
+            List<string> genres = new List<string>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    string sql = "SELECT DISTINCT genre FROM blurays;";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        genres.Add(Convert.ToString(reader["genre"]));
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+
+            return genres;
+        }
+
+        /// <summary>
         /// Get a specific blu-ray based on Id
         /// </summary>
         /// <param name="id"></param>
