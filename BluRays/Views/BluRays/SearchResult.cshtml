@@ -19,11 +19,11 @@
     <select for="Genre" asp-items="@ViewBag.Genres" name="Genre"></select>
     <input class="btn btn-default btn-sm" type="submit" value="Search" />
 </form>
-
+<div id="result-grid">
     @foreach (var bluray in Model)
     {
         <a asp-controller="Home" asp-action="Detail" asp-route-id="@bluray.Id" method="get">
-            <img src="~/images/@bluray.ImageName" />
+            <img id="bluray-result" src="~/images/@bluray.ImageName" />
         </a>
     }
-
+</div>

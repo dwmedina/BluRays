@@ -34,3 +34,19 @@ body {
     margin-left: 1rem;
     margin-right: 1rem;
 }
+
+/*** Search Results ***/
+label {
+    padding: .5rem;
+}
+
+#result-grid {
+    display: grid;
+    grid-template-columns: 40rem 40rem 40rem;
+    grid-row-gap: 3rem;
+    padding: 2rem;
+}
+
+#bluray-result {
+    padding: 2rem;
+}
