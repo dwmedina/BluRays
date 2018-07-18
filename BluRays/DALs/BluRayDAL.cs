@@ -170,6 +170,7 @@ namespace BluRays.DALs
                 Id = Convert.ToInt32(reader["bluray_id"]),
                 Title = Convert.ToString(reader["title"]),
                 Description = Convert.ToString(reader["description"]),
+                Rating = Convert.ToString(reader["rating"]),
                 Genre = Convert.ToString(reader["genre"]),
                 Director = Convert.ToString(reader["director"]),
                 Writer = Convert.ToString(reader["writer"]),
