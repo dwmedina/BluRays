@@ -31,6 +31,8 @@ namespace BluRays
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddTransient<IBluRayDAL>(d => new BluRayDAL(@"Data Source=.\SQLEXPRESS;Initial Catalog=bluraydb;Integrated Security=True"));
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

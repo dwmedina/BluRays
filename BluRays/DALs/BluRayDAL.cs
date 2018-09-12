@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace BluRays.DALs
 {
-    public class BluRayDAL
+    public class BluRayDAL :IBluRayDAL
     {
-        private readonly string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=bluraydb;Integrated Security=True";
+        private readonly string connectionString;
 
-        public BluRayDAL()
-        { }
+        public BluRayDAL(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
 
         /// <summary>
         /// Get all of the blu-rays in the collection
