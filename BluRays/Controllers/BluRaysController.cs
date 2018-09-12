@@ -11,17 +11,22 @@ namespace BluRays.Controllers
 {
     public class BluRaysController : Controller
     {
+
+        private IBluRayDAL dal;
+
+        public BluRaysController(IBluRayDAL dal)
+        {
+            this.dal = dal;
+        }
+
         /// <summary>
         /// The request to display an empty search page
         /// </summary>
         /// <returns></returns>
         public IActionResult Index()
         {
-            // Create a new Blu-ray DAL
-            var blurayDAL = new BluRayDAL();
-
             // Get the genres and store them
-            var genres = blurayDAL.GetGenres();
+            var genres = dal.GetGenres();
 
             // Select genres and make them selectable items
             var options = genres.Select(g => new SelectListItem() { Text = g, Value = g });
@@ -34,9 +39,6 @@ namespace BluRays.Controllers
 
         public IActionResult SearchResult(string title, string genre, int? minLength, int? maxLength)
         {
-            // Create a new Blu-ray DAL
-            var dal = new BluRayDAL();
-
             // repeat request as information is not retained
             var genres = dal.GetGenres();
 

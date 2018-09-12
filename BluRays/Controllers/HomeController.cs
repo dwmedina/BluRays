@@ -11,18 +11,23 @@ namespace BluRays.Controllers
 {
     public class HomeController : Controller
     {
-        static BluRayDAL blurayDAL = new BluRayDAL();
+        private IBluRayDAL dal;
+
+        public HomeController(IBluRayDAL dal)
+        {
+            this.dal = dal;
+        }
 
         public IActionResult Index()
         {
-            IList<BluRay> allBluRays = blurayDAL.GetBluRays();
+            IList<BluRay> allBluRays = dal.GetBluRays();
             return View(allBluRays);
         }
 
         [HttpGet]
         public IActionResult Detail(int id)
         {
-            BluRay bluRay = blurayDAL.GetBluRay(id);
+            BluRay bluRay = dal.GetBluRay(id);
             return View(bluRay);
         }
 
